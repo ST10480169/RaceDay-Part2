@@ -3,29 +3,36 @@ name: RaceDay Part 2 and Part 3 CI
 
 on:
   push:
-    branches: [ "main", "master", "part2", "part3" ]
+    branches:
+      - main
+      - master
+      - part2
+      - part3
   pull_request:
-    branches: [ "main", "master", "part2", "part3" ]
+    branches:
+      - main
+      - master
+      - part2
+      - part3
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install .NET 8 SDK
+      - name: Setup .NET 8 SDK
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: '8.0.x'
 
       - name: Restore dependencies
         run: dotnet restore RaceDay.sln
 
-      - name: Build all projects
+      - name: Build solution
         run: dotnet build RaceDay.sln --configuration Release --no-restore
 
       - name: Run tests
-        run: dotnet test RaceDay.sln --configuration Release --no-build --logger "trx;LogFileName=test-results.trx"
-```
+        run: dotnet test RaceDay.sln --configuration Release --no-build
