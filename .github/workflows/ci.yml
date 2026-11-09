@@ -1,4 +1,3 @@
-
 name: RaceDay Part 2 and Part 3 CI
 
 on:
@@ -7,13 +6,14 @@ on:
       - main
       - master
       - part2
-      - part3
+      - Part3-Raceday
+
   pull_request:
     branches:
       - main
       - master
       - part2
-      - part3
+      - Part3-Raceday
 
 jobs:
   build-and-test:
