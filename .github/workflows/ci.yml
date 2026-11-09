@@ -2,9 +2,9 @@ name: RaceDay Part 2 CI
 
 on:
   push:
-    branches: [ "main", "master", "part2" ]
+    branches: [ "main", "master", "part2", "Part3-Raceday" ]
   pull_request:
-    branches: [ "main", "master", "part2" ]
+    branches: [ "main", "master", "part2", "Part3-Raceday" ]
 
 jobs:
   build-and-test:
@@ -17,8 +17,8 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
-        run: dotnet restore RaceDay.sln
+        run: dotnet restore RaceDay.Tests/RaceDay.Tests.csproj
       - name: Build
-        run: dotnet build RaceDay.sln --configuration Release --no-restore
+        run: dotnet build RaceDay.Tests/RaceDay.Tests.csproj --configuration Release --no-restore
       - name: Run tests
-        run: dotnet test RaceDay.sln --configuration Release --no-build --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test RaceDay.Tests/RaceDay.Tests.csproj --configuration Release --no-build --logger "trx;LogFileName=test-results.trx"
